@@ -13,7 +13,7 @@
           type="primary"
           size="medium"
           @click="handleNewClick"
-          >新建用户</el-button
+          >{{ newtitle }}</el-button
         >
       </template>
 
@@ -86,6 +86,24 @@ export default defineComponent({
   },
   setup(props, { emit }) {
     const store = useStore()
+    const newtitle = ref('')
+    const newtitl = () => {
+      switch (props.pageName) {
+        case 'users':
+          newtitle.value = '新建用户'
+          break
+        case 'role':
+          newtitle.value = '新建角色'
+          break
+        case 'department':
+          newtitle.value = '新建部门'
+          break
+        case 'menu':
+          newtitle.value = '新建列表'
+          break
+      }
+    }
+    newtitl()
 
     // 0.获取操作的权限
     const isCreate = usePermission(props.pageName, 'create')
@@ -99,6 +117,7 @@ export default defineComponent({
 
     // 2.发送网络请求
     const getPageData = (queryInfo: any = {}) => {
+      // console.log(queryInfo)
       if (!isQuery) return
       store.dispatch('system/getPageListAction', {
         pageName: props.pageName,
@@ -175,7 +194,8 @@ export default defineComponent({
       isQuery,
       handleDeleteClick,
       handleNewClick,
-      handleEditClick
+      handleEditClick,
+      newtitle
     }
   }
 })

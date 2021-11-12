@@ -23,7 +23,8 @@ module.exports = {
         // 'vue/no-mutating-props': 'off'
         'vue/valid-v-for': 'off',
         'vue/valid-v-slot': 'off',
-        '@typescript-eslint/no-non-null-assertion': 'off'
+        '@typescript-eslint/no-non-null-assertion': 'off',
+        '@typescript-eslint/explicit-module-boundary-types': 'off'
 
     }
 }

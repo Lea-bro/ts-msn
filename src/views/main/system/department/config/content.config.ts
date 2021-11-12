@@ -1,10 +1,10 @@
 // 用户管理页的配置
 
 export const contentTableConfig = {
-  title: '角色信息',
+  title: '部门信息',
   propList: [
-    { prop: 'name', label: '角色名', minWidth: '100', slotName: '' },
-    { prop: 'intro', label: '权限介绍', minWidth: '100', slotName: '' },
+    { prop: 'name', label: '部门名称', minWidth: '100', slotName: '' },
+    { prop: 'leader', label: '部门领导', minWidth: '100', slotName: '' },
     {
       prop: 'createAt',
       label: '创建时间',

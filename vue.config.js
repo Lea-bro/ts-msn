@@ -1,8 +1,8 @@
 // const path = require('path')
 
 module.exports = {
-    outputDir: './build',
-    // pulicPath:'./',   //打包使用
+    outputDir: './dist',
+    publicPath:'./',
     configureWebpack: {
         resolve: {
             alias: {

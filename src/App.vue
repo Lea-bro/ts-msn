@@ -1,5 +1,6 @@
 <template>
   <div class="app">
+    <!-- element-plus国际化 -->
     <el-config-provider :locale="zhCn">
       <router-view />
     </el-config-provider>

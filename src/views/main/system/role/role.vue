@@ -1,7 +1,12 @@
 <template>
   <div class="role">
-    <page-search :searchFormConfig="searchFormConfig"></page-search>
+    <page-search
+      :searchFormConfig="searchFormConfig"
+      @resetBtnClick="handleResetClick"
+      @queryBtnClick="handleQueryClick"
+    ></page-search>
     <page-content
+      ref="pageContentRef"
       :contentTableConfig="contentTableConfig"
       pageName="role"
       @newBtnClick="handleNewData"
@@ -30,13 +35,14 @@
 
 <script lang="ts">
 import { defineComponent, computed, ref, nextTick } from 'vue'
+
 import { useStore } from '@/store'
 
 import { ElTree } from 'element-plus'
-
-import { usePageModal } from '@/hooks/use-page-modal'
-
 import { menuMapLeafKeys } from '@/utils/map-menus'
+
+import { usePageSearch } from '@/hooks/use-page-search'
+import { usePageModal } from '@/hooks/use-page-modal'
 
 import PageContent from '@/components/page-content'
 import PageSearch from '@/components/page-search'
@@ -54,6 +60,9 @@ export default defineComponent({
     PageModal
   },
   setup() {
+    const store = useStore()
+    const [pageContentRef, handleResetClick, handleQueryClick] = usePageSearch()
+
     // 1.处理pageModal的hook
     const elTreeRef = ref<InstanceType<typeof ElTree>>()
     const editCallback = (item: any) => {
@@ -66,7 +75,6 @@ export default defineComponent({
     const { modalRef, defaultInfo, handleNewData, handleEditData } =
       usePageModal(undefined, editCallback)
 
-    const store = useStore()
     const menus = computed(() => store.state.entireMenu)
 
     const otherInfo = ref({})
@@ -88,7 +96,10 @@ export default defineComponent({
       menus,
       otherInfo,
       handleCheckChange,
-      elTreeRef
+      elTreeRef,
+      pageContentRef,
+      handleResetClick,
+      handleQueryClick
     }
   }
 })

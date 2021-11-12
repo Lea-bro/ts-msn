@@ -9,6 +9,7 @@ import {
   createPageData,
   editPageData
 } from '@/service/main/system/system'
+import axios from 'axios'
 
 const systemMdule: Module<ISystemState, IRootState> = {
   namespaced: true,
@@ -21,7 +22,9 @@ const systemMdule: Module<ISystemState, IRootState> = {
       goodsList: [],
       goodsCount: 0,
       menuList: [],
-      menuCount: 0
+      menuCount: 0,
+      departmentList: [],
+      departmentCount: 0
     }
   },
   mutations: {
@@ -48,6 +51,12 @@ const systemMdule: Module<ISystemState, IRootState> = {
     },
     changeMenuCount(state, menuCount: number) {
       state.menuCount = menuCount
+    },
+    changeDepartmentList(state, departmentList: any[]) {
+      state.departmentList = departmentList
+    },
+    changeDepartmentCount(state, departmentCount: number) {
+      state.departmentCount = departmentCount
     }
   },
   getters: {
@@ -141,7 +150,7 @@ const systemMdule: Module<ISystemState, IRootState> = {
         }
       })
     },
-
+    // 编辑用户
     async editPageDataAction({ dispatch }, payload: any) {
       // 1.编辑数据的请求
       const { pageName, editData, id } = payload
