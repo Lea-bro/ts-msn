@@ -9,7 +9,7 @@ import {
   createPageData,
   editPageData
 } from '@/service/main/system/system'
-import axios from 'axios'
+// import axios from 'axios'
 
 const systemMdule: Module<ISystemState, IRootState> = {
   namespaced: true,

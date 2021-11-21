@@ -1,6 +1,6 @@
 <template>
   <div class="overview">
-    <h2>overview</h2>
+    <h2>欢迎来到后台管理系统</h2>
   </div>
 </template>
 
