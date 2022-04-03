@@ -4,14 +4,16 @@ import { RouteRecordRaw } from 'vue-router'
 
 let firstMenus: any = null
 
+// 根据获取的菜单动态注册路由
 export function mapMenusToRoutes(userMenus: any[]): RouteRecordRaw[] {
   const routes: RouteRecordRaw[] = []
 
-  // 1.先去加载默认所有的routes
+  // 1.先去加载默认所有的routes,就是把所有导出的文件放入一个数组中
   const allRoutes: RouteRecordRaw[] = []
   const routeFiles = require.context('../router/main', true, /\.ts/)
   routeFiles.keys().forEach((key) => {
     const route = require('../router/main' + key.split('.')[1])
+
     allRoutes.push(route.default)
   })
 
@@ -38,13 +40,14 @@ export function mapMenusToRoutes(userMenus: any[]): RouteRecordRaw[] {
   return routes
 }
 
+// 返回的面包屑路径名
 export function pathMapBreadCrumbs(userMenus: any[], currentPath: string) {
   const breadcrumbs: IBreadcrumb[] = []
   pathMapToMenu(userMenus, currentPath, breadcrumbs)
-
   return breadcrumbs
 }
 
+// 返回当前所在路径的名称，面包屑
 export function pathMapToMenu(
   userMenus: any[],
   currentPath: string,
@@ -55,7 +58,7 @@ export function pathMapToMenu(
       const findMenu = pathMapToMenu(menu.children ?? [], currentPath)
       if (findMenu) {
         breadcrumbs?.push({ name: menu.name })
-        breadcrumbs?.push({ name: findMenu.name })
+        breadcrumbs?.push({ name: findMenu.name})
         return findMenu
       }
     } else if (menu.type === 2 && menu.url === currentPath) {

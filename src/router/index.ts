@@ -17,7 +17,6 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/main',
     name: 'main',
-    // redirect:'',
     component: () => import('@/views/main/main.vue')
     // children:[] :根据userMenus来决定
   },

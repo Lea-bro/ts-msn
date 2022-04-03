@@ -2,11 +2,11 @@
   <div class="login-account">
     <el-form label-width="60px" :rules="rules" :model="account" ref="formRef">
       <el-form-item label="账号" prop="name">
-        <el-input placeholder="请输入账号" v-model="account.name"></el-input>
+        <el-input placeholder="测试：lily" v-model="account.name"></el-input>
       </el-form-item>
       <el-form-item label="密码" prop="password">
         <el-input
-          placeholder="请输入密码"
+          placeholder="密码：123456"
           v-model="account.password"
           show-password
         ></el-input>
@@ -28,8 +28,8 @@ export default defineComponent({
   setup() {
     const store = useStore()
     const account = reactive({
-      name: localCache.getCache('name' ?? ''),
-      password: localCache.getCache('password' ?? '')
+      name: localCache.getCache('name') ?? '',
+      password: localCache.getCache('password') ?? ''
     })
     const formRef = ref<InstanceType<typeof ElForm>>()
 

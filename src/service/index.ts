@@ -4,6 +4,7 @@ import { BASE_URL, TIME_OUT } from './request/config'
 
 import localCache from '@/utils/cache'
 
+// console.log(BASE_URL)
 const hyRequest = new HYRequest({
   // 传入axios实例中的
   baseURL: BASE_URL,

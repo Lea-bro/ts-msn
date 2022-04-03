@@ -13,9 +13,8 @@
               :label="item.label"
               :rules="item.rules"
             >
-              <template
-                v-if="item.type === 'input' || item.type === 'password'"
-              >
+            <!-- 判断类型传入不同渲染不同的类型。el-input -->
+              <template v-if="item.type === 'input' || item.type === 'password'">
                 <el-input
                   :placeholder="item.placeholder"
                   v-bind="item.otherOptions"
